@@ -1,9 +1,8 @@
 #include "BridgeH.h"
-BridgeH bh(9,10,14,15);
+BridgeH bh(5,6,9,10);//1-4
 void setup() {
-  
+}
+void loop() {
+  bh.fordward();
 }
 
-void loop() {
-  bh.right();
-}

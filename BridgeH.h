@@ -3,6 +3,7 @@ private:
   int in1this,in2this,in3this,in4this;
 public:
   BridgeH(int in1, int in2, int in3, int in4);
+  void stopH();
   void fordward();
   void reverse();
   void left();
@@ -18,6 +19,12 @@ BridgeH::BridgeH(int in1, int in2, int in3, int in4){
   pinMode(in2,OUTPUT);
   pinMode(in3,OUTPUT);
   pinMode(in4,OUTPUT);
+}
+void BridgeH::stopH(){
+  digitalWrite(in1this, LOW);
+  digitalWrite(in2this, LOW);
+  digitalWrite(in3this, LOW);
+  digitalWrite(in4this, LOW);
 }
 void BridgeH::fordward(){
   digitalWrite(in1this, HIGH);
