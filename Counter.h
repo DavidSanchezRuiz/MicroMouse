@@ -18,8 +18,5 @@ int Counter::getCount(){
   return count;
 }
 void Counter::sum(){
-  if (!digitalRead(pin)==state){
-    state=digitalRead(pin);
     count++;
-  }
 }
