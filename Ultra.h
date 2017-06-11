@@ -4,11 +4,11 @@ private:
   int trig;
   int timeU;
 public:
-  Ultra(int echoA,int trigA);
+  Ultra(int trigA, int echoA);
   long getD();
 };
 
-Ultra::Ultra(int echoA,int trigA){
+Ultra::Ultra(int trigA, int echoA){
   echo=echoA;
   trig=trigA;
   pinMode(echo,INPUT);
