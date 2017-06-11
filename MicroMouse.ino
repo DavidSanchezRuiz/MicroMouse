@@ -2,11 +2,13 @@
 #include "Counter.h"
 #include "Ultra.h"
 
-BridgeH bh(5,6,9,10);//1-4
+BridgeH bh(5, 6, 9, 10);//1-4
 
 Counter c(2);
 
-Ultra u(11,12);
+Ultra uRight(11, 12);
+Ultra uFront(7, 8);
+Ultra uLeft(13, 4);
 
 void setup() {
   //interrupts();
@@ -15,15 +17,15 @@ void setup() {
   Serial.begin(9600);
 }
 void loop() {
-  Serial.println(u.getD());
+  Serial.println(uFront.getD());
   //bh.right();
-  if(u.getD() > 4){
+  if(uFront.getD() > 4) {
     bh.fordward();
   }else{
     bh.stopH();
   }
 }
 
-void count(){
+void count() {
   c.sum();
 }
