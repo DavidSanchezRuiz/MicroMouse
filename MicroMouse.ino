@@ -11,13 +11,13 @@ void setup() {
   Serial.begin(9600);
 }
 void loop() {
-  Serial.println(u.getD());
-  //bh.right();
-  if(u.getD()>4){
-    bh.fordward();
-  }else{
-    bh.stopH();
-  }
+  //Serial.println(u.getD());
+  bh.left();
+  //if(u.getD()>4){
+    //bh.fordward();
+  //}else{
+    //bh.stopH();
+  //}
 }
 void count(){
   c.sum();
