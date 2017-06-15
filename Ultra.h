@@ -24,6 +24,8 @@ public:
 
   Ultra(int trigA, int echoA);
   long getD();
+  bool getContinueWalk();
+  void setContinueWalk(bool continueWalk);
 
   // setContinueWalk();
 };
@@ -49,5 +51,11 @@ long Ultra::getD() {
   digitalWrite(trig, LOW);
   timeU = pulseIn(echo, HIGH);
   return int(0.017 * timeU);
+}
+bool Ultra::getContinueWalk(){
+  return continueWalk;
+}
+void Ultra::setContinueWalk(bool continueWalk){
+  this->continueWalk=continueWalk;
 }
 #endif /* ULTRA */
