@@ -11,8 +11,6 @@
 #define NEXT_LEFT   6
 #define NEXT_RIGHT  7
 
-
-
 /*
 * Controla las acciones de un puente H.
 */
@@ -139,5 +137,4 @@ bool BridgeH::getObstacle(){
 void BridgeH::setObstacle(bool obstacle){
   this->obstacle = obstacle;
 }
-
 #endif /* BRIDGE_H */
