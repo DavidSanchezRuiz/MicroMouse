@@ -1,3 +1,5 @@
+#ifndef COUNTER
+#define COUNTER
 /*
 * Controla el sensor que cuenta pasos.
 */
@@ -37,3 +39,4 @@ int Counter::getCount() {
 void Counter::sum() {
     count++;
 }
+#endif /* COUNTER */

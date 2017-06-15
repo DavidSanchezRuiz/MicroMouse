@@ -19,11 +19,11 @@ void setup() {
 void loop() {
   Serial.println(uFront.getD());
   //bh.right();
-  if(uFront.getD() > 4) {
-    bh.fordward();
-  }else{
-    bh.stopH();
-  }
+  // if(uFront.getD() > 4) {
+  //   bh.fordward();
+  // }else{
+  //   bh.stopH();
+  // }
 }
 
 void count() {

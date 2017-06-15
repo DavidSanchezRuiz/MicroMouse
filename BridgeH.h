@@ -1,3 +1,5 @@
+#ifndef BRIDGE_H
+#define BRIDGE_H
 /*
 * Controla las acciones de un puente H.
 */
@@ -78,3 +80,4 @@ void BridgeH::right() {
   digitalWrite(in3this, HIGH);
   digitalWrite(in4this, LOW);
 }
+#endif /* BRIDGE_H */

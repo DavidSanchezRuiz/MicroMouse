@@ -1,3 +1,5 @@
+#ifndef ULTRA
+#define ULTRA
 /*
 * Se encarga de controlar el sensor ultrasonico.
 */
@@ -37,3 +39,4 @@ long Ultra::getD() {
   timeU = pulseIn(echo, HIGH);
   return int(0.017 * timeU);
 }
+#endif /* ULTRA */
