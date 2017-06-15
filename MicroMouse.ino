@@ -48,6 +48,7 @@ void loop() {
 
 void pruebas() {
     Serial.println(uPruebas.getD());
+
 }
 
 void count() {
