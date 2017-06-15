@@ -30,7 +30,7 @@ Counter::Counter(int pinT) {
 * Retorna el valor del contador.
 */
 int Counter::getCount() {
-  return count;
+  return count/2;
 }
 
 /*

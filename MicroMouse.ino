@@ -11,22 +11,23 @@ Ultra uFront(11, 12);
 Ultra uLeft(7, 8);
 
 void setup() {
-  //interrupts();
-  //attachInterrupt(digitalPinToInterrupt(2), count, RISING);
+  interrupts();
+  attachInterrupt(digitalPinToInterrupt(2), count, RISING);
   //pinMode(3,INPUT_PULLUP);
 
   Serial.begin(9600);
 }
 void loop() {
 
-  int frontDistance = uFront.getD();
-  int rightDistance = uRight.getD();
-  int leftDistance = uLeft.getD();
+  turnRight();
+  //int frontDistance = uFront.getD();
+  //int rightDistance = uRight.getD();
+  //int leftDistance = uLeft.getD();
 
-  if (frontDistance > FRONT_MIN_DISTANCE) {
-    bh.fordward();
-    uFront.setContinueWalk(true);
-  }
+  //if (frontDistance > FRONT_MIN_DISTANCE) {
+    //bh.fordward();
+    //uFront.setContinueWalk(true);
+  //}
 }
 
 void pruebas() {
@@ -39,3 +40,11 @@ void pruebas() {
 void count() {
   c.sum();
 }
+void turnRight(){
+  int count=c.getCount();
+  while(count+20>c.getCount()){
+    bh.right();
+  }
+  bh.stopH();
+}
+
