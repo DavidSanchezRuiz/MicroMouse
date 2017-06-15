@@ -14,12 +14,10 @@ void setup() {
   interrupts();
   attachInterrupt(digitalPinToInterrupt(2), count, RISING);
   //pinMode(3,INPUT_PULLUP);
-
   Serial.begin(9600);
 }
 void loop() {
-
-  turnRight();
+  test();
   //int frontDistance = uFront.getD();
   //int rightDistance = uRight.getD();
   //int leftDistance = uLeft.getD();
@@ -40,6 +38,10 @@ void pruebas() {
 void count() {
   c.sum();
 }
+void test(){
+    turnRight();
+    delay(2000)
+}
 void turnRight(){
   int count=c.getCount();
   while(count+20>c.getCount()){
@@ -47,4 +49,10 @@ void turnRight(){
   }
   bh.stopH();
 }
-
+void correctRight(){
+  int count=c.getCount();
+  while(count+1>c.getCount()){
+    bh.right();
+  }
+  bh.fordward();
+}
