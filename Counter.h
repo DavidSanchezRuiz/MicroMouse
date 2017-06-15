@@ -1,22 +1,39 @@
-class Counter{
+  /*
+* Controla el sensor que cuenta pasos.
+*/
+class Counter {
+
 private:
-  int count,state,pin;
+
+  int count, state, pin;
+
 public:
+
   Counter(int pin);
   int getCount();
   void sum();
 };
 
-Counter::Counter(int pinT){
-  count=0;
-  pinMode(pin,INPUT);
-  pin=pinT;
-  state=digitalRead(pin);
+/*
+* Recibe como parametro el pin utilizado por el contador.
+*/
+Counter::Counter(int pinT) {
+  count = 0;
+  pinMode(pin, INPUT);
+  pin = pinT;
+  state = digitalRead(pin);
 }
 
-int Counter::getCount(){
+/*
+* Retorna el valor del contador.
+*/
+int Counter::getCount() {
   return count;
 }
-void Counter::sum(){
+
+/*
+* Suma 1 al valor del contador.
+*/
+void Counter::sum() {
     count++;
 }
