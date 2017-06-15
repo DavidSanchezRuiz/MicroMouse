@@ -1,0 +1,73 @@
+void medir(){
+    int adelante,atras,izquierda,derecha;
+    if(millis() >= pingTimer){ // mido si han pasado pingTimer ms.
+        pingTimer += pingSpeed; // Incremento pingTimer
+        adelante = sonar_adelante.ping_cm();
+    if(adelante != 0)
+        d_pared_adelante = adelante; //uso estas auxiliares para
+        filtrar medidas de 0 de los sensores.(errores)
+        izquierda = sonar_izquierda.ping_cm();
+    if(izquierda != 0)
+        d_pared_izq = izquierda;
+        derecha = sonar_derecha.ping_cm();
+    if(derecha != 0)
+        d_pared_der = derecha;
+        atras = sonar_atras.ping_cm();
+    if(atras != 0)
+        d_pared_atras = atras;
+    if(d_pared_adelante <= 14 && d_pared_adelante >0) //no
+        considero el 0 por si hay un error de lectura(dan 0).
+        obstaculo = true;
+    if(obstaculo == true && d_pared_adelante >= 45)
+        obstaculo = false;
+    if(d_pared_adelante > 0 && d_pared_adelante < 4)
+        chocado = true;
+}
+
+
+
+void controlar(){
+    if(estado == 0 && obstaculo == false) //lo pongo a andar, solo se
+        usa en el inicio
+        estado = 1;
+    if(estado == 1 && obstaculo == true){ //Voy avanzando y
+        encuentro un obstaculo -> giro para el lado que tenga mas espacio.
+        if(d_pared_izq > 22)
+            estado = 2;
+        if(d_pared_der > 22)
+            estado = 3;
+    }
+    if(d_pared_izq > 30 && d_pared_der > 30)
+        estado = 0; //Encontre la salida
+    if(chocado == true){
+        retroceder();
+        chocado = false;
+        estado = 1;
+    }
+
+
+void mover(int est){
+    switch (est){
+        case 0:
+            servo_der.write(PM_DER); //lo dejo quieto
+            servo_izq.write(PM_IZQ);
+            break;
+        case 1:
+            avanzar();
+            break;
+        case 2:
+            girar_izquierda();
+            break;
+        case 3:
+            girar_derecha();
+            break;
+        case 4:
+            retroceder();
+        case 5:
+            media_vuelta();
+        break;
+            case 6:
+            retroceder();
+        break;
+    }
+}

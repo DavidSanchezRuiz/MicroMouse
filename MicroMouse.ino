@@ -16,26 +16,65 @@ void setup() {
   //pinMode(3,INPUT_PULLUP);
 
   Serial.begin(9600);
+  delay(5000);
 }
 void loop() {
+  measure();
+  control();
+  move();
+}
 
-  int frontDistance = uFront.getD();
+void measure() {
   int rightDistance = uRight.getD();
+  int frontDistance = uFront.getD();
   int leftDistance = uLeft.getD();
 
-  if (frontDistance > FRONT_MIN_DISTANCE) {
+  if ((rightDistance > 0 ) && (frontDistance > 0) && (leftDistance > 0)) {
+    if ((bh.getObstacle()) && (frontDistance > FRONT_MIN_DISTANCE)) {
+      bh.setObstacle(false);
+    }
+    if ((frontDistance <= FRONT_MIN_DISTANCE) && (frontDistance > 0)) {
+      bh.next(leftDistance, rightDistance);
+      bh.setObstacle(true);
+    }
+  }
+};
+
+void control() {
+  if ((bh.getStatus() == STOPPED) && (!bh.getObstacle())) {
+    bh.setStatus(GO_FORWARD);
+  }
+  if ((bh.getStatus() == GO_FORWARD) && (bh.getObstacle())) {
+    switch (bh.getNextStep()) {
+      case NEXT_LEFT:
+      bh.setStatus(TURN_LEFT);
+      break;
+      case NEXT_RIGHT:
+      bh.setStatus(TURN_RIGHT);
+      break;
+    }
+  }
+};
+
+void move() {
+  switch (bh.getStatus()) {
+    case STOPPED:
+    bh.stopH();
+    break;
+    case GO_FORWARD:
     bh.fordward();
-    uFront.setContinueWalk(true);
+    break;
+    case TURN_RIGHT:
+    bh.right();
+    break;
+    case GO_BACK:
+    bh.reverse();
+    break;
+    case TURN_LEFT:
+    bh.left();
+    break;
   }
 }
-
-void pruebas() {
-  Serial.println(uFront.getD());
-  Serial.println(uRight.getD());
-  Serial.println(uLeft.getD());
-  Serial.println();
-}
-
 void count() {
   c.sum();
 }

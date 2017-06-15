@@ -1,9 +1,9 @@
 #ifndef ULTRA
 #define ULTRA
 
-#define RIGHT_MIN_DISTANCE 5
-#define FRONT_MIN_DISTANCE 5
-#define LEFT_MIN_DISTANCE 5
+#define RIGHT_MIN_DISTANCE 15
+#define FRONT_MIN_DISTANCE 15
+#define LEFT_MIN_DISTANCE 15
 
 /*
 * Se encarga de controlar el sensor ultrasonico.
@@ -52,10 +52,13 @@ long Ultra::getD() {
   timeU = pulseIn(echo, HIGH);
   return int(0.017 * timeU);
 }
+
 bool Ultra::getContinueWalk(){
   return continueWalk;
 }
+
 void Ultra::setContinueWalk(bool continueWalk){
   this->continueWalk=continueWalk;
 }
+
 #endif /* ULTRA */
