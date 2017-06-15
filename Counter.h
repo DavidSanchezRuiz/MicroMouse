@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 #ifndef COUNTER
 #define COUNTER
 /*
-=======
-  /*
->>>>>>> 7ba53fc092f01bc9705e896dfaec540f05d2914b
 * Controla el sensor que cuenta pasos.
 */
 class Counter {
