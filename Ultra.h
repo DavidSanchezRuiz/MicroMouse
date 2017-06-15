@@ -1,5 +1,10 @@
 #ifndef ULTRA
 #define ULTRA
+
+#define RIGHT_MIN_DISTANCE 5
+#define FRONT_MIN_DISTANCE 5
+#define LEFT_MIN_DISTANCE 5
+
 /*
 * Se encarga de controlar el sensor ultrasonico.
 */
@@ -13,10 +18,14 @@ private:
   // Tiempo de duracion de rebote de la onda
   int timeU;
 
+  bool continueWalk;
+
 public:
 
   Ultra(int trigA, int echoA);
   long getD();
+
+  // setContinueWalk();
 };
 
 /*
@@ -26,9 +35,11 @@ public:
 Ultra::Ultra(int trigA, int echoA) {
   echo = echoA;
   trig = trigA;
+  continueWalk = false;
   pinMode(echo, INPUT);
   pinMode(trig, OUTPUT);
 }
+
 /*
 * Distancia en cm
 */
