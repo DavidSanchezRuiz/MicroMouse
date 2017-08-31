@@ -1,3 +1,4 @@
+#include "Counter.h"
 #ifndef BRIDGE_H
 #define BRIDGE_H
 
@@ -11,6 +12,7 @@
 #define NEXT_LEFT   6
 #define NEXT_RIGHT  7
 
+#define TURN_SIZE 4
 /*
 * Controla las acciones de un puente H.
 */
@@ -19,7 +21,7 @@ class BridgeH {
 private:
 
   int in1, in2, in3, in4, status, nextStep;
-  bool obstacle;
+  bool obstacle, state;
 
 public:
 
@@ -29,6 +31,7 @@ public:
   void reverse();
   void left();
   void right();
+  void turnLeft(Counter *c);
   void next(int leftDistance, int rightDistance);
 
   int getStatus();
@@ -136,5 +139,13 @@ bool BridgeH::getObstacle(){
 
 void BridgeH::setObstacle(bool obstacle){
   this->obstacle = obstacle;
+}
+
+void BridgeH::turnLeft(Counter *c){
+  int temp=c->getCount();
+  while(temp+TURN_SIZE>c->getCount()){
+    right();
+  }
+  stopH();
 }
 #endif /* BRIDGE_H */

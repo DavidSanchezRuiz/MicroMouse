@@ -1,7 +1,7 @@
 #include "BridgeH.h"
 #include "Counter.h"
 #include "Ultra.h"
-#define TURN_SIZE 4
+#define TURN_SIZE 1
 
 BridgeH bh(5, 6, 9, 10);//1-4
 Counter c(2);
@@ -11,17 +11,34 @@ Ultra uLeft(7, 8);
 
 void setup() {
   interrupts();
-  attachInterrupt(digitalPinToInterrupt(2), count, RISING);
-  //pinMode(3,INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(2), count, FALLING);
+  pinMode(13,INPUT_PULLUP);
   Serial.begin(9600);
   delay(5000);
 }
 void loop() {
-
-  measure();
-  control();
-  move();
-  // test();
+  delay(50);
+  if(uFront.getD()<5){
+    bh.stopH();
+    delay(50);
+    if(uRight.getD()<uLeft.getD()<uFront.getD()<4){
+      turnLeft();
+      delay(100);
+      bh.fordward();
+    }else if(uRight.getD()>uLeft.getD()){
+    turnRight();
+    delay(100);
+    }else{
+      turnLeft();
+      delay(1000);
+    }
+  }else
+  bh.fordward();
+  bh.fordward();  
+  //measure()
+  //control();
+  //move();
+  //test();
 }
 
 void measure() {
@@ -76,8 +93,23 @@ void move() {
   }
 }
 void count() {
-  Serial.println(c.getCount());
   c.sum();
+}
+void testUltra(){
+  Serial.print(uLeft.getD());
+  Serial.print(" ");
+  
+  Serial.print(uFront.getD());
+  Serial.print(" ");
+  
+  Serial.print(uRight.getD());
+  Serial.println("");
+}
+void test(){
+  if(uFront.getD()<3)
+  bh.turnLeft(&c);
+  else
+  bh.stopH();
 }
 void test2(){
   turnRight();
@@ -85,7 +117,7 @@ void test2(){
   turnLeft();
   delay(2000);
 }
-void test(){
+void test3(){
   if(uRight.getD()<2){
     correctLeft();
   }

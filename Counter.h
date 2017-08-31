@@ -13,6 +13,7 @@ public:
 
   Counter(int pin);
   int getCount();
+  int getCountPointer();
   void sum();
 };
 
@@ -31,6 +32,14 @@ Counter::Counter(int pinT) {
 */
 int Counter::getCount() {
   return count/2;
+}
+
+/*
+ * Retorna el puntero del contador.
+ */
+int Counter::getCountPointer() {
+  int *pointer=count;
+  return pointer;
 }
 
 /*

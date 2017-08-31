@@ -50,6 +50,9 @@ long Ultra::getD() {
   delayMicroseconds(10);
   digitalWrite(trig, LOW);
   timeU = pulseIn(echo, HIGH);
+  if(int(0.017 * timeU)<0)
+  return 20;
+  else
   return int(0.017 * timeU);
 }
 
